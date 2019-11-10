@@ -14,7 +14,7 @@
           <b>Email</b>
         </label>
         <div>
-          <input type="email" v-model="email" placeholder="email" />
+          <input type="text" v-model="email" placeholder="email" />
         </div>
         <label>
           <b>Password</b>
@@ -22,7 +22,7 @@
         <div>
           <input type="password" v-model="password" placeholder="password" />
         </div>
-        <div v-if="error" class="error">{{error.toUpperCase()}}</div>
+        <div class="danger-alert" v-html="error" />
         <button type="submit">Login</button>
       </div>
       <div class="container" style="background-color:#f1f1f1">
@@ -54,25 +54,24 @@ export default {
     }
   },
   methods: {
-    login() {
-      AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      })
-        .then(res => {
-          localStorage.setItem("loggedIn", true);
-          this.$router.push("profile");
-        })
-        .catch(({ response }) => {
-          this.error = response.data.message;
+    async login() {
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
         });
+        localStorage.setItem("loggedIn", true);
+        this.$router.push("profile");
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
     }
   }
 };
 </script>
 
 <style scoped>
-.error {
+.danger-alert {
   color: #f44336;
 }
 body {
@@ -83,7 +82,7 @@ form {
   border: 3px solid #f1f1f1;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"] {
   width: 40%;
   padding: 12px 20px;
