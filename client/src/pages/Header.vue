@@ -1,17 +1,29 @@
 <template>
-  <div class="header">
-    <router-link class="logo" :to="{ name: 'home' }">.blogger</router-link>
-    <div class="header-right">
-      <router-link :to="{ name: 'home' }">Home</router-link>
-      <router-link to="login">Log In</router-link>
-      <router-link to="signup">Sign Up</router-link>
-    </div>
-  </div>
+  <v-toolbar fixed class="cyan" dark>
+    <v-toolbar-title class="mr-4">
+      <router-link class="home" tag="span" :to="{
+          name: 'home'
+        }">.blogger</router-link>
+    </v-toolbar-title>
+
+    <v-spacer></v-spacer>
+
+    <v-toolbar-items>
+      <v-btn text dark :to="{
+          name: 'login'
+        }">Login</v-btn>
+
+      <v-btn text dark :to="{
+          name: 'signup'
+        }">Sign Up</v-btn>
+
+      <!-- <v-btn v-if="$store.state.isUserLoggedIn" text dark @click="logout">Log Out</v-btn> -->
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
 export default {
-  name: "Home",
   data() {
     return {};
   }

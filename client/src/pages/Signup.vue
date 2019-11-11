@@ -1,46 +1,57 @@
 <template>
-  <div>
-    <h1>Sign Up</h1>
-    <form method="POST" @submit.prevent="submit">
-      <label>
-        <b>Username</b>
-      </label>
-      <div>
-        <input type="text" v-model="username" placeholder="username" />
-      </div>
-      <label>
-        <b>Email</b>
-      </label>
-      <div>
-        <input type="email" v-model="email" placeholder="email" />
-      </div>
-      <label>
-        <b>Password</b>
-      </label>
-      <div>
-        <input type="password" v-model="password" placeholder="password" />
-      </div>
-      <div v-if="error">{{error}}</div>
-      <div>
-        <button type="submit">Sign Up</button>
-      </div>
-    </form>
-  </div>
+  <v-layout column>
+    <v-flex xs6 offset-xs3>
+      <panel title="Register">
+        <form name="tab-tracker-form" autocomplete="off">
+          <v-text-field label="Email" v-model="email"></v-text-field>
+          <br />
+          <v-text-field
+            label="Password"
+            type="password"
+            v-model="password"
+            autocomplete="new-password"
+          ></v-text-field>
+        </form>
+        <br />
+        <div class="danger-alert" v-html="error" />
+        <br />
+        <v-btn dark class="cyan" @click="register">Register</v-btn>
+      </panel>
+    </v-flex>
+  </v-layout>
 </template>
+
 <script>
+import AuthenticationService from "@/services/AuthenticationService";
+
 export default {
   data() {
     return {
       email: "",
       password: "",
-      error: "",
-      username: ""
+      error: ""
     };
   },
-  methods: {}
+  methods: {
+    async register() {
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        });
+        localStorage.setItem("loggedIn", true);
+        this.$router.push("profile");
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    }
+  }
 };
 </script>
 <style scoped>
+.danger-alert {
+  color: #f44336;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -49,7 +60,6 @@ body {
 }
 
 /* Full-width input fields */
-input[type="email"],
 input[type="text"],
 input[type="password"] {
   width: 40%;
