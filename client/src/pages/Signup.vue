@@ -39,7 +39,6 @@ export default {
           email: this.email,
           password: this.password
         });
-        localStorage.setItem("loggedIn", true);
         this.$router.push("profile");
       } catch (error) {
         this.error = error.response.data.error;

@@ -35,7 +35,18 @@ export default {
     }
   },
   methods: {
-    async login() {}
+    async login() {
+      try {
+        const response = await AuthenticationService.login({
+          email: this.email,
+          password: this.password
+        });
+        localStorage.setItem("loggedIn", true);
+        this.$router.push("profile");
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    }
   }
 };
 </script>
