@@ -9,13 +9,23 @@
     <v-spacer></v-spacer>
 
     <v-toolbar-items>
-      <v-btn text dark :to="{
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        text
+        dark
+        :to="{
           name: 'login'
-        }">Login</v-btn>
+        }"
+      >Login</v-btn>
 
-      <v-btn text dark :to="{
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        text
+        dark
+        :to="{
           name: 'signup'
-        }">Sign Up</v-btn>
+        }"
+      >Sign Up</v-btn>
 
       <!-- <v-btn v-if="$store.state.isUserLoggedIn" text dark @click="logout">Log Out</v-btn> -->
     </v-toolbar-items>
