@@ -1,6 +1,6 @@
 
 <template>
-  <v-footer dark padless absolute>
+  <v-footer dark padless absolute class="margin">
     <v-card class="flex" flat tile>
       <v-card-title class="teal">
         <strong class="subheading">Get connected with us on social networks!</strong>
@@ -23,13 +23,7 @@
 <script>
 export default {
   data: () => ({
-    icons: [
-      "fab fa-facebook",
-      "fab fa-twitter",
-      "fab fa-google-plus",
-      "fab fa-linkedin",
-      "fab fa-instagram"
-    ]
+    icons: ["contacts", "contact_phone", "contact_mail", "comment", "chat"]
   })
 };
 </script>

@@ -6,8 +6,10 @@
         <v-container fluid>
           <router-view></router-view>
         </v-container>
+        <footer>
+          <Footer />
+        </footer>
       </main>
-      <Footer />
     </v-app>
   </div>
 </template>
@@ -25,6 +27,14 @@ export default {
 </script>
 
 <style>
+.danger-alert {
+  color: red;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 </style>
 
 

@@ -4,6 +4,10 @@ import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import Profile from '@/pages/Profile';
 import Signup from '@/pages/Signup';
+import PublicBlogs from '@/pages/PublicBlogs';
+import CreateBlog from '@/pages/CreateBlog';
+import EditBlog from '@/pages/EditBlog';
+import ViewBlog from '@/pages/ViewBlog';
 
 Vue.use(Router);
 
@@ -19,15 +23,38 @@ export default new Router({
 			name: 'login',
 			component: Login
 		},
-		{
-			path: '/profile',
-			name: 'profile',
-			component: Profile
-		},
+
 		{
 			path: '/signup',
 			name: 'signup',
 			component: Signup
+		},
+		{
+			path: '/publicBlogs',
+			name: 'publicBlogs',
+			component: PublicBlogs
+		},
+		{
+			path: '/blogs/create',
+			name: 'blogs-create',
+			component: CreateBlog
+		},
+
+		{
+			path: '/blogs/:blogId',
+			name: 'blog',
+			component: ViewBlog
+		},
+		{
+			path: '/blogs/:blogId/edit',
+			name: 'blogs-edit',
+			component: EditBlog
+		},
+		{
+			path: '/profile/:userId',
+			name: 'profile',
+			component: Profile,
+			props: true
 		}
 	]
 });
