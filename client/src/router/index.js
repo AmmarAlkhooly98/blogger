@@ -8,6 +8,7 @@ import PublicBlogs from '@/pages/PublicBlogs';
 import CreateBlog from '@/pages/CreateBlog';
 import EditBlog from '@/pages/EditBlog';
 import ViewBlog from '@/pages/ViewBlog';
+import ProfileBlogs from '@/pages/ProfileBlogs';
 
 Vue.use(Router);
 
@@ -55,6 +56,11 @@ export default new Router({
 			name: 'profile',
 			component: Profile,
 			props: true
+		},
+		{
+			path: '/profile/:userId/blogs',
+			name: 'profile-blogs',
+			component: ProfileBlogs
 		}
 	]
 });

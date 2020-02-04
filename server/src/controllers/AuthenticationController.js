@@ -53,6 +53,7 @@ module.exports = {
 			// 	});
 			// }
 
+			//use bcrypt
 			const isPasswordValid = user.password === password;
 			if (!isPasswordValid) {
 				return res.status(403).send({

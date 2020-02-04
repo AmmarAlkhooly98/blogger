@@ -76,7 +76,9 @@ export default {
       try {
         if (this.blog.type === null) this.blog.type = 1;
         await BlogsService.createBlog(this.blog);
-        this.$router.push("profile");
+        this.$router.push({
+          name: "profile-blogs"
+        });
       } catch (err) {
         console.log(err);
       }

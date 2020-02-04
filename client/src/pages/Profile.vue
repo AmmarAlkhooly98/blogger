@@ -5,6 +5,17 @@
       <panel title="profile">
         <h2>Welcome to your profile {{this.userEmail}}</h2>
         <div>
+          <v-btn
+            text
+            outlined
+            hover
+            :to="{
+                    name: 'profile-blogs'
+                  }"
+          >My Blogs</v-btn>
+        </div>
+        <br />
+        <div>
           publish blog
           <v-btn :to="{
           name: 'blogs-create'
@@ -12,41 +23,6 @@
             <v-icon>add</v-icon>
           </v-btn>
         </div>
-      </panel>
-    </v-flex>
-    <v-flex>
-      <panel title="Blogs">
-        <v-container class="spacing-playground py-0 px-2" fluid>
-          <div v-for="blog in blogs" :key="blog.id" class="pl-1 pr-1 pt-2 pb-2">
-            <ul>
-              <li>
-                <v-card width="344" outlined hover>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <v-list-item-title class="headline mb-1">{{blog.title}}</v-list-item-title>
-                      <v-list-item-subtitle>{{blog.blog}}</v-list-item-subtitle>
-                    </v-list-item-content>
-                    <!-- <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar> -->
-                  </v-list-item>
-
-                  <v-card-actions>
-                    <v-btn
-                      text
-                      outlined
-                      hover
-                      :to="{
-                    name: 'blog', 
-                    params: {
-                      blogId: blog.id
-                    }
-                  }"
-                    >Read Blog</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </li>
-            </ul>
-          </div>
-        </v-container>
       </panel>
     </v-flex>
 
@@ -62,8 +38,23 @@ export default {
   data() {
     return {
       userEmail: null,
-      blogs: null
+      blogs: null,
+      search: ""
     };
+  },
+  watch: {
+    search(value) {
+      const route = {
+        name: "profile"
+      };
+      if (this.search !== "") {
+        this.query = {
+          search: this.search
+        };
+      }
+      this.$router.push(route);
+      console.log(value);
+    }
   },
   async mounted() {
     const userId = this.$store.state.route.params.userId;

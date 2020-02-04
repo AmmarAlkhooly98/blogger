@@ -1,6 +1,7 @@
 <template>
   <panel title="Public Blogs">
     <v-container class="spacing-playground py-0 px-2" fluid>
+      <v-text-field label="Seach for Blog" filled rounded type="text" v-model="search"></v-text-field>
       <div v-for="blog in blogs" :key="blog.id" class="pl-1 pr-1 pt-2 pb-2">
         <ul>
           <li>
@@ -19,7 +20,7 @@
                   outlined
                   hover
                   :to="{
-                    name: 'blog', 
+                    name: 'blog',
                     params: {
                       blogId: blog.id
                     }

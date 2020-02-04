@@ -10,6 +10,7 @@
           name: 'publicBlogs'
         }">Blogs</v-btn>
 
+    <v-spacer></v-spacer>
     <v-btn
       v-if="$store.state.isUserLoggedIn"
       text
@@ -17,11 +18,10 @@
       :to="{
           name: 'profile',
           params: {
-            userId: this.$store.state.route.params.userId
+            userId: this.$store.state.user.id
           }
         }"
     >profile</v-btn>
-    <v-spacer></v-spacer>
 
     <v-toolbar-items>
       <v-btn

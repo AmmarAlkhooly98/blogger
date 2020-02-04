@@ -8,6 +8,7 @@ export default new Vuex.Store({
 	state: {
 		token: null,
 		user: null,
+		userBlog: null,
 		isUserLoggedIn: false
 	},
 	mutations: {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
 		},
 		setUser(state, user) {
 			state.user = user;
+		},
+		setUserBlog(state, userBlog) {
+			state.userBlog = userBlog;
 		}
 	},
 	actions: {

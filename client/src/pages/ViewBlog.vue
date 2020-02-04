@@ -3,11 +3,12 @@
     <h2>{{this.blog.title}}</h2>
     <div>{{this.blog.blog}}</div>
     <v-btn
+      v-if="$store.state.isUserLoggedIn"
       text
       outlined
       hover
       :to="{
-        name: 'blogs-edit', 
+        name: 'blogs-edit',
         params: {
           blogId: blog.id
         }
@@ -20,6 +21,8 @@
 import BlogsService from "@/services/BlogsService.js";
 import Panel from "@/pages/Panel.vue";
 
+// var userId = this.$store.state.user.id === this.$store.state.user.userId;
+console.log("blog hi", this.blog);
 export default {
   data() {
     return {
